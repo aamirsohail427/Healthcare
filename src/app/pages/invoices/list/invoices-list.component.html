@@ -1,0 +1,56 @@
+<div class="page-title">
+    <dx-form labelLocation="left" [showColonAfterLabel]="false" [colCount]="12">
+        <dxo-col-count-by-screen [xs]="1" [sm]="1" [md]="1" [lg]="1"></dxo-col-count-by-screen>
+        <dxi-item>
+            <div *dxTemplate>
+                <h2 class="page-info-title">Invoices</h2>
+            </div>
+        </dxi-item>
+    </dx-form>
+</div>
+
+<div class="content-block dx-card responsive-paddings">
+    <dx-data-grid #grdInvoices class="d-grid-no-bacth-actions-filter" [dataSource]="dtsInvoices"
+        (onContentReady)="onGrdInvoicesContentReady($event)"
+        (onToolbarPreparing)="onGrdInvoicesToolbarPreparing($event)"
+        [masterDetail]="{ enabled: true, template: 'invoicesDetail' }">
+
+        <dxo-export [enabled]="true" [fileName]="'Invoices'" [allowExportSelectedData]="true">
+            <dxo-texts exportAll="Export all rows" exportSelectedRows="Export selected rows"></dxo-texts>
+        </dxo-export>
+        <dxo-paging [pageSize]="10"></dxo-paging>
+        <dxo-pager [showPageSizeSelector]="true" [showInfo]="true"></dxo-pager>
+        <dxo-filter-row [visible]="true"></dxo-filter-row>
+        <dxo-header-filter [visible]="true"></dxo-header-filter>
+
+        <dxi-column dataField="patientName" caption="Patient Name" [allowHeaderFiltering]="false"
+            [allowFiltering]="true">
+        </dxi-column>
+        <dxi-column dataField="totalAmount" caption="Total Amount" [hidingPriority]="1" [allowHeaderFiltering]="false"
+            [allowFiltering]="true">
+        </dxi-column>
+        <dxi-column dataField="totalAppointments" caption="# of Appointment" [hidingPriority]="0"
+            [allowHeaderFiltering]="false" [allowFiltering]="true">
+        </dxi-column>
+        <div *dxTemplate="let detail of 'invoicesDetail'">
+
+            <dx-data-grid [dataSource]="getInvoicesByAppointment(detail.id)">
+                <dxo-paging [pageSize]="10"></dxo-paging>
+                <dxo-pager [showPageSizeSelector]="true" [showInfo]="true"></dxo-pager>
+                <dxo-filter-row [visible]="true"></dxo-filter-row>
+                <dxo-header-filter [visible]="true"></dxo-header-filter>ks
+
+                <dxi-column dataField="appointmentDate" dataType="date" caption="Appointment Date" [hidingPriority]="1"
+                    [allowHeaderFiltering]="true" [allowFiltering]="true">
+                </dxi-column>
+                <dxi-column dataField="amount" caption="Amount" [allowHeaderFiltering]="false" [allowFiltering]="true">
+                </dxi-column>
+                <dxi-column dataField="status" caption="Unit" [hidingPriority]="1" [allowHeaderFiltering]="true"
+                    [allowFiltering]="false">
+                </dxi-column>
+            </dx-data-grid>
+        </div>
+    </dx-data-grid>
+
+</div>
+<ng-template #componentContainer></ng-template>

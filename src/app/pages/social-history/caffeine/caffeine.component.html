@@ -1,0 +1,89 @@
+<h2 class="content-block">Profile Settings</h2>
+
+<div class="content-block dx-card responsive-paddings">
+  <dx-form #frmSmokingDetails [(formData)]="frmSmoking" labelLocation="top" [colCount]="1">
+    <dxi-item itemType="group" caption="Personal Details" [colCount]="2">
+      <dxi-item dataField="mr">
+        <dxo-label [visible]="true" text="MRNumber"></dxo-label>
+      </dxi-item>
+      <dxi-item dataField="firstName">
+        <dxo-label [visible]="true" text="First Name"></dxo-label>
+        <dxi-validation-rule type="required" message="First Name is required.">
+        </dxi-validation-rule>
+      </dxi-item>
+      <dxi-item dataField="lastName">
+        <dxo-label [visible]="true" text="Last Name"></dxo-label>
+        <dxi-validation-rule type="required" message="Last Name is required.">
+        </dxi-validation-rule>
+      </dxi-item>
+      <dxi-item dataField="gender" editorType="dxSelectBox"
+        [editorOptions]="{ dataSource:dtsGenderTypes, valueExpr:'id' , displayExpr:'value'}">
+        <dxo-label [visible]="true" text="Gender"></dxo-label>
+        <dxi-validation-rule type="required" message="Gender is required.">
+        </dxi-validation-rule>
+      </dxi-item>
+      <dxi-item dataField="email">
+        <dxo-label [visible]="true" text="Email"></dxo-label>
+      </dxi-item>
+      <dxi-item dataField="phone">
+        <dxo-label [visible]="true" text="Contact Number"></dxo-label>
+
+      </dxi-item>
+      <dxi-item dataField="dob" editorType="dxDateBox">
+        <dxo-label [visible]="true" text="Date of Birth"></dxo-label>
+        <dxi-validation-rule type="required" message="DOB is required.">
+        </dxi-validation-rule>
+      </dxi-item>
+      <dxi-item dataField="martialStatus" editorType="dxSelectBox"
+        [editorOptions]="{ dataSource:dtsGenderTypes, valueExpr:'id' , displayExpr:'value'}">
+        <dxo-label [visible]="true" text="Martial Status"></dxo-label>
+      </dxi-item>
+      <dxi-item dataField="language" editorType="dxSelectBox"
+        [editorOptions]="{ dataSource:dtsGenderTypes, valueExpr:'id' , displayExpr:'value'}">
+        <dxo-label [visible]="true" text="Preferred Language"></dxo-label>
+
+      </dxi-item>
+      <dxi-item dataField="language" editorType="dxSelectBox"
+        [editorOptions]="{ dataSource:dtsGenderTypes, valueExpr:'id' , displayExpr:'value'}">
+        <dxo-label [visible]="true" text="Ethnicity"></dxo-label>
+      </dxi-item>
+      <dxi-item dataField="language" editorType="dxSelectBox"
+        [editorOptions]="{ dataSource:dtsGenderTypes, valueExpr:'id' , displayExpr:'value'}">
+        <dxo-label [visible]="true" text="Blood Group"></dxo-label>
+      </dxi-item>
+      <dxi-item dataField="occupation">
+        <dxo-label [visible]="true" text="Current Occupation"></dxo-label>
+      </dxi-item>
+    </dxi-item>
+    <dxi-item itemType="group" caption="Address Info" [colCount]="2">
+      <dxi-item dataField="address1">
+        <dxo-label [visible]="true" text="Primary Address"></dxo-label>
+        <dxi-validation-rule type="required" message="Primary Address is required.">
+        </dxi-validation-rule>
+      </dxi-item>
+      <dxi-item dataField="address2">
+        <dxo-label [visible]="true" text="Secondary Address"></dxo-label>
+      </dxi-item>
+      <dxi-item dataField="country" editorType="dxSelectBox"
+        [editorOptions]="{ dataSource:dtsGenderTypes, valueExpr:'id' , displayExpr:'value'}">
+        <dxo-label [visible]="true" text="Country"></dxo-label>
+      </dxi-item>
+      <dxi-item dataField="state" editorType="dxSelectBox"
+        [editorOptions]="{ dataSource:dtsGenderTypes, valueExpr:'id' , displayExpr:'value'}">
+        <dxo-label [visible]="true" text="State"></dxo-label>
+      </dxi-item>
+      <dxi-item dataField="city" editorType="dxSelectBox"
+        [editorOptions]="{ dataSource:dtsGenderTypes, valueExpr:'id' , displayExpr:'value'}">
+        <dxo-label [visible]="true" text="City"></dxo-label>
+      </dxi-item>
+      <dxi-item dataField="zipCode">
+        <dxo-label [visible]="true" text="Zip Code"></dxo-label>
+      </dxi-item>
+    </dxi-item>
+    <dxi-item [colSpan]="2">
+      <shared-button class="d-shared-button pull-right" [customText]="'Save'" [isDisabled]="isDataProcessing"
+        [isVisible]="true">
+      </shared-button>
+    </dxi-item>
+  </dx-form>
+</div>

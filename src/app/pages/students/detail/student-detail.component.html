@@ -1,0 +1,76 @@
+<dx-popup class="d-con-popup" [fullScreen]="true" [title]="popupTitle" [dragEnabled]="false" [showCloseButton]="true"
+    [shading]="false" [toolbarItems]="popupToolbarItems" [(visible)]="popupVisible" [animation]="popupAnimation"
+    (onHidden)="onPopupHidden($event)" (onHiding)="onPopupHiding($event)">
+
+    <dx-scroll-view>
+        <dx-form #frmStudentDetails [(formData)]="frmStudentDetail" [colCount]="1">
+            <dxi-item itemType="group" caption="Personal Details" colCount="2">
+                <dxi-item dataField="firstName">
+                    <dxo-label [visible]="true" text="First Name"></dxo-label>
+                    <dxi-validation-rule type="required" message="First Name is required.">
+                    </dxi-validation-rule>
+                </dxi-item>
+                <dxi-item dataField="lastName">
+                    <dxo-label [visible]="true" text="Last Name"></dxo-label>
+                    <dxi-validation-rule type="required" message="Last Name is required.">
+                    </dxi-validation-rule>
+                </dxi-item>
+                <dxi-item dataField="gender" editorType="dxSelectBox"
+                    [editorOptions]="{ dataSource:dtsGenderTypes, valueExpr:'id' , displayExpr:'value'}">
+                    <dxo-label [visible]="true" text="Gender"></dxo-label>
+                    <dxi-validation-rule type="required" message="Gender is required.">
+                    </dxi-validation-rule>
+                </dxi-item>
+                <dxi-item dataField="dob" editorType="dxDateBox">
+                    <dxo-label [visible]="true" text="Date of Birth"></dxo-label>
+                    <dxi-validation-rule type="required" message="DOB is required.">
+                    </dxi-validation-rule>
+                </dxi-item>
+
+                <dxi-item dataField="email">
+                    <dxo-label [visible]="true" text="Email Address"></dxo-label>
+                </dxi-item>
+
+                <dxi-item dataField="gender" editorType="dxSelectBox"
+                    [editorOptions]="{ dataSource:dtsGenderTypes, valueExpr:'id' , displayExpr:'value'}">
+                    <dxo-label [visible]="true" text="Gurdian"></dxo-label>
+                </dxi-item>
+
+            </dxi-item>
+            <dxi-item itemType="group" [colCount]="2">
+                <dxi-item itemType="group" caption="Account Details">
+                    <dxi-item dataField="userName">
+                        <dxo-label [visible]="true" text="Username"></dxo-label>
+                        <dxi-validation-rule type="required" message="Username is required.">
+                        </dxi-validation-rule>
+                    </dxi-item>
+                    <dxi-item dataField="password" [editorOptions]="{ mode: 'password' }">
+                        <dxo-label [visible]="true" text="Password"></dxo-label>
+                        <dxi-validation-rule type="required" message="Password is required.">
+                        </dxi-validation-rule>
+                    </dxi-item>
+                    <dxi-item dataField="confirmPassword" [editorOptions]="{ mode: 'password' }">
+                        <dxo-label [visible]="true" text="Confirm Password"></dxo-label>
+                        <dxi-validation-rule type="required" message="Confirm Password is required.">
+                        </dxi-validation-rule>
+                        <dxi-validation-rule type="compare" [comparisonTarget]="comparePassword"
+                            message="Password and Confirm Password do not match">
+                        </dxi-validation-rule>
+                    </dxi-item>
+                </dxi-item>
+                <dxi-item itemType="group" caption="School Details">
+                    <dxi-item dataField="joinDate" editorType="dxDateBox">
+                        <dxo-label [visible]="true" text="Date of Join"></dxo-label>
+                        <dxi-validation-rule type="required" message="DOB is required.">
+                        </dxi-validation-rule>
+                    </dxi-item>
+                    <dxi-item dataField="classId" editorType="dxTagBox"
+                        [editorOptions]="{ dataSource:dtsClasses, valueExpr:'id' , displayExpr:'value'}">
+                        <dxo-label [visible]="true" text="Assign Class"></dxo-label>
+                    </dxi-item>
+                </dxi-item>
+            </dxi-item>
+        </dx-form>
+    </dx-scroll-view>
+</dx-popup>
+<ng-template #componentContainer></ng-template>

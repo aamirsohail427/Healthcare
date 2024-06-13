@@ -1,0 +1,32 @@
+<dx-popup class="d-con-popup d-con-detail-popup" [(visible)]="popupVisible" [toolbarItems]="popupToolbarItems"
+    [(width)]="popupWidth" [(height)]="popupHeight" [minWidth]="minWidth" [minHeight]="minHeight" [title]="popupTitle"
+    [dragEnabled]="true" [resizeEnabled]="true" (onHiding)="onPopupHiding($event)" (onHidden)="onPopupHidden($event)">
+    <div class="d-con-form">
+        <dx-form #frmDrugDetails [(formData)]="frmDrugDetail" [showColonAfterLabel]="false"
+            labelLocation="top" [colCount]="2">
+            <dxi-item dataField="title">
+                <dxo-label [visible]="true" text="Title"></dxo-label>
+                <dxi-validation-rule type="required" message="Title is required.">
+                </dxi-validation-rule>
+            </dxi-item>
+            <dxi-item dataField="roleId" editorType="dxSelectBox" cssClass="d-con-padding-no-right-only d-round-border"
+                [editorOptions]="{ dataSource:dtsReceiverTypes, valueExpr:'id' , displayExpr:'value', onValueChanged:onReceiverValueChanged}">
+                <dxo-label [visible]="true" text="Select Receiver"></dxo-label>
+            </dxi-item>
+            <dxi-item dataField="description" editorType="dxTextArea" [colSpan]="2">
+                <dxo-label [visible]="true" text="Description"></dxo-label>
+            </dxi-item>
+            <dxi-item itemType="group" [colCount]="3" [colSpan]="2">
+                <dxi-item dataField="isPublished" editorType="dxCheckBox">
+                    <dxo-label [visible]="true" text="Published"></dxo-label>
+                </dxi-item>
+                <dxi-item dataField="isSentEmail" editorType="dxCheckBox">
+                    <dxo-label [visible]="true" text="Send Email"></dxo-label>
+                </dxi-item>
+                <dxi-item dataField="isSentText" editorType="dxCheckBox">
+                    <dxo-label [visible]="true" text="Send Text"></dxo-label>
+                </dxi-item>
+            </dxi-item>
+        </dx-form>
+    </div>
+    <ng-template #componentContainer></ng-template>

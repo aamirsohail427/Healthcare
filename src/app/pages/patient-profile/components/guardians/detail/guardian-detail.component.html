@@ -1,0 +1,61 @@
+<dx-popup class="d-con-popup" [fullScreen]="true" [title]="popupTitle" [dragEnabled]="false" [showCloseButton]="true"
+    [shading]="false" [toolbarItems]="popupToolbarItems" [(visible)]="popupVisible" [animation]="popupAnimation"
+    (onHidden)="onPopupHidden($event)" (onHiding)="onPopupHiding($event)">
+    <div class="d-con-form">
+        <dx-form #frmGuardianDetails [(formData)]="frmGuardianDetail" [showColonAfterLabel]="false" labelLocation="top">
+            <dxi-item itemType="group" caption="Personal Info" [colCount]="2">
+                <dxi-item dataField="firstName">
+                    <dxo-label [visible]="true" text="First Name"></dxo-label>
+                    <dxi-validation-rule type="required" message="First Name is required.">
+                    </dxi-validation-rule>
+                </dxi-item>
+                <dxi-item dataField="lastName">
+                    <dxo-label [visible]="true" text="Last Name"></dxo-label>
+                    <dxi-validation-rule type="required" message="Last Name is required.">
+                    </dxi-validation-rule>
+                </dxi-item>
+                <dxi-item dataField="gender" editorType="dxSelectBox"
+                    [editorOptions]="{ dataSource:dtsGenderTypes, valueExpr:'id' , displayExpr:'value'}">
+                    <dxo-label [visible]="true" text="Gender"></dxo-label>
+                    <dxi-validation-rule type="required" message="Gender is required.">
+                    </dxi-validation-rule>
+                </dxi-item>
+                <dxi-item dataField="email">
+                    <dxo-label [visible]="true" text="Email"></dxo-label>
+                </dxi-item>
+                <dxi-item dataField="phone">
+                    <dxo-label [visible]="true" text="Contact Number"></dxo-label>
+                </dxi-item>
+                <dxi-item dataField="relationId" editorType="dxSelectBox"
+                    [editorOptions]="{ dataSource:dtsGenderTypes, valueExpr:'id' , displayExpr:'value'}">
+                    <dxo-label [visible]="true" text="Relation"></dxo-label>
+                </dxi-item>
+            </dxi-item>
+            <dxi-item itemType="group" caption="Address Info" [colCount]="2">
+                <dxi-item dataField="address1">
+                    <dxo-label [visible]="true" text="Primary Address"></dxo-label>
+                    <dxi-validation-rule type="required" message="Primary Address is required.">
+                    </dxi-validation-rule>
+                </dxi-item>
+                <dxi-item dataField="address2">
+                    <dxo-label [visible]="true" text="Secondary Address"></dxo-label>
+                </dxi-item>
+                <dxi-item dataField="country" editorType="dxSelectBox"
+                    [editorOptions]="{ dataSource:dtsGenderTypes, valueExpr:'id' , displayExpr:'value'}">
+                    <dxo-label [visible]="true" text="Country"></dxo-label>
+                </dxi-item>
+                <dxi-item dataField="state" editorType="dxSelectBox"
+                    [editorOptions]="{ dataSource:dtsGenderTypes, valueExpr:'id' , displayExpr:'value'}">
+                    <dxo-label [visible]="true" text="State"></dxo-label>
+                </dxi-item>
+                <dxi-item dataField="city" editorType="dxSelectBox"
+                    [editorOptions]="{ dataSource:dtsGenderTypes, valueExpr:'id' , displayExpr:'value'}">
+                    <dxo-label [visible]="true" text="City"></dxo-label>
+                </dxi-item>
+                <dxi-item dataField="zipCode">
+                    <dxo-label [visible]="true" text="Zip Code"></dxo-label>
+                </dxi-item>
+            </dxi-item>
+        </dx-form>
+    </div>
+    <ng-template #componentContainer></ng-template>

@@ -1,0 +1,76 @@
+<dx-context-menu #cnmBatchActions [dataSource]="dtsBatchActions" [width]="'auto'" target="#btnBatchActions"
+    [(visible)]="cnmBatchActionsVisible" (onItemClick)="onCnmBatchActionsItemClick($event)" [showEvent]="undefined">
+    <dxo-position [my]="'top left'" [at]="'bottom left'"></dxo-position>
+</dx-context-menu>
+<dx-context-menu #cnmActions [dataSource]="dtsActions" [width]="'auto'" [target]="cnmActionsTarget"
+    [(visible)]="cnmActionsVisible" (onItemClick)="onCnmActionsItemClick($event)" [showEvent]="undefined">
+    <dxo-position [my]="'top right'" [at]="'bottom right'"></dxo-position>
+</dx-context-menu>
+<div class="page-title">
+    <dx-form labelLocation="left" [showColonAfterLabel]="false" [colCount]="12">
+        <dxo-col-count-by-screen [xs]="2" [sm]="2" [md]="2" [lg]="2"></dxo-col-count-by-screen>
+        <dxi-item>
+            <div *dxTemplate>
+                <h2 class="page-info-title">Allergies</h2>
+            </div>
+        </dxi-item>
+        <dxi-item>
+            <div *dxTemplate>
+                <div class="pull-right">
+                    <shared-button class="d-shared-button" [customText]="'Add Allergy'" [isDisabled]="isDataProcessing"
+                        [isVisible]="true" (clicked)="onBtnAddAllergiesClicked()"></shared-button>
+                </div>
+            </div>
+        </dxi-item>
+    </dx-form>
+</div>
+
+<div class="content-block dx-card responsive-paddings">
+    <dx-data-grid #grdInventoryAllergies class="d-grid-no-bacth-actions-filter" [dataSource]="dtsAllergies" [showBorders]="false"
+        [columnAutoWidth]="true" [columnHidingEnabled]="true"
+        (onSelectionChanged)="gridListHelper.onSelectionChanged($event)"
+        (onContentReady)="onGrdAllergiesContentReady($event)" (onRowClick)="onGrdAllergiesRowClick($event)"
+        (onToolbarPreparing)="onGrdAllergiesToolbarPreparing($event)">
+
+        <dxo-export [enabled]="true" [fileName]="'Allergies History'" [allowExportSelectedData]="true">
+            <dxo-texts exportAll="Export all rows" exportSelectedRows="Export selected rows"></dxo-texts>
+        </dxo-export>
+        <dxo-paging [pageSize]="10"></dxo-paging>
+        <dxo-pager [showPageSizeSelector]="true" [showInfo]="true"></dxo-pager>
+        <dxo-filter-row [visible]="true"></dxo-filter-row>
+        <dxo-header-filter [visible]="true"></dxo-header-filter>
+        <dxo-selection mode="multiple" selectAllMode="page" showCheckBoxesMode="always"></dxo-selection>
+
+        <dxi-column dataField="title" caption="Stock">
+        </dxi-column>
+        <dxi-column dataField="desc" caption="Location">
+        </dxi-column>
+        <dxi-column dataField="desc" caption="Item">
+        </dxi-column>
+        <dxi-column dataField="desc" caption="Issue Date">
+        </dxi-column>
+        <dxi-column dataField="desc" caption="Return Date">
+        </dxi-column>
+        <dxi-column dataField="desc" caption="Qty">
+        </dxi-column>
+        <dxi-column dataField="modifiedDate" caption="Modified Date" dataType="date">
+        </dxi-column>
+        <dxi-column dataField="modifiedBy" caption="Modified By">
+        </dxi-column>
+        <dxi-column dataField="id" [width]="80" alignment="right" caption="Action" [allowEditing]="false"
+            [allowExporting]="false" [allowFiltering]="false" [allowFixing]="false" [allowGrouping]="false"
+            [allowHeaderFiltering]="false" [allowHiding]="false" [allowReordering]="false" [allowResizing]="false"
+            [allowSearch]="false" [allowSorting]="false" cellTemplate="buttonTemplate"></dxi-column>
+        <div *dxTemplate="let cellInfo of 'buttonTemplate'">
+            <div class="d-con-cell-action">
+                <button type="button" [disabled]="isDataProcessing" id="btnMainAction-{{cellInfo.data.id}}"
+                    (click)="onBtnMainActionClick(cellInfo.data)">
+                    Edit
+                </button>
+                <button type="button" class="d-btn-toggle"></button>
+            </div>
+        </div>
+    </dx-data-grid>
+
+</div>
+<ng-template #componentContainer></ng-template>

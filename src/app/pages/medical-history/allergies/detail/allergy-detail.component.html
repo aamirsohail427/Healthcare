@@ -1,0 +1,26 @@
+<dx-popup class="d-con-popup d-con-detail-popup" [(visible)]="popupVisible" [toolbarItems]="popupToolbarItems"
+    [(width)]="popupWidth" [(height)]="popupHeight" [minWidth]="minWidth" [minHeight]="minHeight" [title]="popupTitle"
+    [dragEnabled]="true" [resizeEnabled]="true" (onHiding)="onPopupHiding($event)" (onHidden)="onPopupHidden($event)">
+    <div class="d-con-form">
+        <dx-form #frmAllergyDetails [(formData)]="frmAllergyDetail" [colCount]="2" [showColonAfterLabel]="false"
+            labelLocation="top">
+            <dxi-item dataField="title">
+                <dxo-label [visible]="true" text="Where this will use?"></dxo-label>
+                <dxi-validation-rule type="required" message="Title is required.">
+                </dxi-validation-rule>
+            </dxi-item>
+            <dxi-item dataField="title" editorType="dxSelectBox">
+                <dxo-label [visible]="true" text="Inventory"></dxo-label>
+            </dxi-item>
+            <dxi-item dataField="title">
+                <dxo-label [visible]="true" text="Issue Date"></dxo-label>
+            </dxi-item>
+            <dxi-item dataField="title">
+                <dxo-label [visible]="true" text="Return Date"></dxo-label>
+            </dxi-item>
+            <dxi-item dataField="title"> 
+                <dxo-label [visible]="true" text="Qty"></dxo-label>
+            </dxi-item>
+        </dx-form>
+    </div>
+    <ng-template #componentContainer></ng-template>

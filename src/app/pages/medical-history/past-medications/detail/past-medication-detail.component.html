@@ -1,0 +1,33 @@
+<dx-popup class="d-con-popup d-con-detail-popup" [(visible)]="popupVisible" [toolbarItems]="popupToolbarItems"
+    [(width)]="popupWidth" [(height)]="popupHeight" [minWidth]="minWidth" [minHeight]="minHeight" [title]="popupTitle"
+    [dragEnabled]="true" [resizeEnabled]="true" (onHiding)="onPopupHiding($event)" (onHidden)="onPopupHidden($event)">
+    <div class="d-con-form">
+        <dx-form #frmMedicationDetails [(formData)]="frmMedicationDetail" [colCount]="2" [showColonAfterLabel]="false"
+            labelLocation="top">
+            <dxi-item dataField="title">
+                <dxo-label [visible]="true" text="Title"></dxo-label>
+                <dxi-validation-rule type="required" message="Title is required.">
+                </dxi-validation-rule>
+            </dxi-item>
+            <dxi-item dataField="title" editorType="dxSelectBox">
+                <dxo-label [visible]="true" text="Subjects"></dxo-label>
+            </dxi-item>
+            <dxi-item dataField="title" editorType="dxNumberBox">
+                <dxo-label [visible]="true" text="Tution Fee"></dxo-label>
+            </dxi-item>
+
+            <dxi-item dataField="title" editorType="dxSelectBox">
+                <dxo-label [visible]="true" text="Fee will be"></dxo-label>
+            </dxi-item>
+            <dxi-item dataField="title" editorType="dxSelectBox">
+                <dxo-label [visible]="true" text="Attendance will be?"></dxo-label>
+            </dxi-item>
+            <dxi-item dataField="title" editorType="dxNumberBox">
+                <dxo-label [visible]="true" text="Student Capacity?"></dxo-label>
+            </dxi-item>
+            <dxi-item dataField="title" editorType="dxSelectBox">
+                <dxo-label [visible]="true" text="Grade Category"></dxo-label>
+            </dxi-item>
+        </dx-form>
+    </div>
+    <ng-template #componentContainer></ng-template>

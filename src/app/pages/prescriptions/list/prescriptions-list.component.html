@@ -1,0 +1,72 @@
+<div class="page-title">
+    <dx-form labelLocation="left" [showColonAfterLabel]="false" [colCount]="12">
+        <dxo-col-count-by-screen [xs]="1" [sm]="1" [md]="1" [lg]="1"></dxo-col-count-by-screen>
+        <dxi-item>
+            <div *dxTemplate>
+                <h2 class="page-info-title">Prescriptions</h2>
+            </div>
+        </dxi-item>
+    </dx-form>
+</div>
+
+<div class="content-block dx-card responsive-paddings">
+    <dx-data-grid #grdExams class="d-grid-no-bacth-actions-filter" [dataSource]="dtsPrescriptions"
+        (onContentReady)="onGrdPrescriptionsContentReady($event)"
+        (onToolbarPreparing)="onGrdPrescriptionsToolbarPreparing($event)"
+        [masterDetail]="{ enabled: true, template: 'prescriptionDetail' }">
+
+        <dxo-paging [pageSize]="10"></dxo-paging>
+        <dxo-pager [showPageSizeSelector]="true" [showInfo]="true"></dxo-pager>
+        <dxo-filter-row [visible]="true"></dxo-filter-row>
+        <dxo-header-filter [visible]="true"></dxo-header-filter>
+        <dxo-export [enabled]="true" [fileName]="'Subjects'" [allowExportSelectedData]="false">
+            <dxo-texts exportAll="Export to Excel"></dxo-texts>
+        </dxo-export>
+
+        <dxi-column dataField="userName" caption="Patient Name" [allowHeaderFiltering]="false" [allowFiltering]="true">
+        </dxi-column>
+        <dxi-column dataField="appointmentDate" dataType="date" caption="Appointment Date" [hidingPriority]="1"
+            [allowHeaderFiltering]="true" [allowFiltering]="true">
+        </dxi-column>
+        <dxi-column dataField="apptTime" caption="Appointment Time" [hidingPriority]="0" [allowHeaderFiltering]="false"
+            [allowFiltering]="true">
+        </dxi-column>
+        <div *dxTemplate="let detail of 'prescriptionDetail'">
+
+            <dx-data-grid #grdAttendanceDetails [dataSource]="getPrescriptionsByAppointment(detail.id)"
+                (onToolbarPreparing)="onGrdPrescriptionsToolbarPreparing($event)">
+
+                <dxo-export [enabled]="true" [fileName]="'Prescription'" [allowExportSelectedData]="false">
+                    <dxo-texts exportAll="Export to Excel"></dxo-texts>
+                </dxo-export>
+                <dxo-paging [pageSize]="10"></dxo-paging>
+                <dxo-pager [showPageSizeSelector]="true" [showInfo]="true"></dxo-pager>
+                <dxo-filter-row [visible]="true"></dxo-filter-row>
+                <dxo-header-filter [visible]="true"></dxo-header-filter>ks
+
+                <dxi-column dataField="medicationName" caption="Medication Name" [allowHeaderFiltering]="false"
+                    [allowFiltering]="true">
+                </dxi-column>
+                <dxi-column dataField="frequency" caption="Frequency" [hidingPriority]="1" [allowHeaderFiltering]="true"
+                    [allowFiltering]="false">
+                </dxi-column>
+                <dxi-column dataField="startDate" caption="Start Date" dataType="date" [allowHeaderFiltering]="true"
+                    [allowFiltering]="true">
+                </dxi-column>
+                <dxi-column dataField="endDate" caption="Stop Date" dataType="date" [allowHeaderFiltering]="true"
+                    [allowFiltering]="true">
+                </dxi-column>
+                <dxi-column dataField="unit" caption="Unit" [hidingPriority]="1" [allowHeaderFiltering]="true"
+                    [allowFiltering]="false">
+                </dxi-column>
+                <dxi-column dataField="id" [width]="80" alignment="right" caption="Action" [allowEditing]="false"
+                    [allowExporting]="false" [allowFiltering]="false" [allowFixing]="false" [allowGrouping]="false"
+                    [allowHeaderFiltering]="false" [allowHiding]="false" [allowReordering]="false"
+                    [allowResizing]="false" [allowSearch]="false" [allowSorting]="false" cellTemplate="buttonTemplate">
+                </dxi-column>
+            </dx-data-grid>
+        </div>
+    </dx-data-grid>
+
+</div>
+<ng-template #componentContainer></ng-template>

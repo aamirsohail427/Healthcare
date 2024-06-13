@@ -1,0 +1,48 @@
+<dx-popup class="d-con-popup" [fullScreen]="true" [title]="popupTitle" [dragEnabled]="false" [showCloseButton]="true"
+    [shading]="false" [toolbarItems]="popupToolbarItems" [(visible)]="popupVisible" [animation]="popupAnimation"
+    (onHidden)="onPopupHidden($event)" (onHiding)="onPopupHiding($event)">
+    <dx-scroll-view>
+
+        <dx-form #frmInsuranceDetails [(formData)]="frmInsuranceDetail" [colCount]="1" [showColonAfterLabel]="false"
+            labelLocation="top">
+            <dxi-item itemType="group" caption="Insurance Details" colCount="2">
+                <dxi-item dataField="subscriberName">
+                    <dxo-label [visible]="true" text="Subscriber Name"></dxo-label>
+                    <dxi-validation-rule type="required" message="Subscriber Name is required.">
+                    </dxi-validation-rule>
+                </dxi-item>
+                <dxi-item dataField="relationship" editorType="dxSelectBox"
+                    [editorOptions]="{ dataSource:dtsGenderTypes, valueExpr:'id' , displayExpr:'value'}">
+                    <dxo-label [visible]="true" text="Relationship"></dxo-label>
+                </dxi-item>
+                <dxi-item dataField="relation">
+                    <dxo-label [visible]="true" text="Relation Name"></dxo-label>
+                </dxi-item>
+                <dxi-item dataField="companyName">
+                    <dxo-label [visible]="true" text="Company Name"></dxo-label>
+                    <dxi-validation-rule type="required" message="Company Name is required.">
+                    </dxi-validation-rule>
+                </dxi-item>
+               
+                <dxi-item dataField="email">
+                    <dxo-label [visible]="true" text="Email"></dxo-label>
+                </dxi-item>
+                <dxi-item dataField="phoneNo">
+                    <dxo-label [visible]="true" text="Phone No"></dxo-label>
+                </dxi-item>
+                <dxi-item dataField="insuranceId">
+                    <dxo-label [visible]="true" text="Insurance Id"></dxo-label>
+                    <dxi-validation-rule type="required" message="Insurance Id is required.">
+                    </dxi-validation-rule>
+                </dxi-item>
+                <dxi-item dataField="SNN">
+                    <dxo-label [visible]="true" text="SNN"></dxo-label>
+                </dxi-item>
+                <dxi-item dataField="notes" [colSpan]="2" editorType="dxTextArea">
+                    <dxo-label [visible]="true" text="Notes"></dxo-label>
+                </dxi-item>
+            </dxi-item>
+        </dx-form>
+    </dx-scroll-view>
+</dx-popup>
+<ng-template #componentContainer></ng-template>

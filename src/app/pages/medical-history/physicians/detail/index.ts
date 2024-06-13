@@ -1,0 +1,1 @@
+export * from './physician-detail.component'

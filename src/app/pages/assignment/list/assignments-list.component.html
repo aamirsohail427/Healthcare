@@ -1,0 +1,52 @@
+<div class="page-title">
+    <dx-form labelLocation="left" [showColonAfterLabel]="false" [colCount]="12">
+        <dxo-col-count-by-screen [xs]="2" [sm]="2" [md]="2" [lg]="2"></dxo-col-count-by-screen>
+        <dxi-item>
+            <div *dxTemplate>
+                <h2 class="page-info-title">Assignments</h2>
+            </div>
+        </dxi-item>
+        <dxi-item>
+            <div *dxTemplate>
+                <div class="pull-right">
+                    <shared-button class="d-shared-button" [customText]="'Create Assignment'"
+                        [isDisabled]="isDataProcessing" [isVisible]="true" (clicked)="onBtnAssignmentClicked()">
+                    </shared-button>
+                </div>
+            </div>
+        </dxi-item>
+    </dx-form>
+</div>
+
+<div class="content-block dx-card responsive-paddings">
+    <dx-data-grid #grdExams class="d-grid-no-bacth-actions-filter" [dataSource]="dtsAssignments" [showBorders]="false"
+        [columnAutoWidth]="true" [columnHidingEnabled]="true" (onContentReady)="onGrdAssignmentsContentReady($event)"
+        (onRowClick)="onGrdAssignmentsRowClick($event)" (onToolbarPreparing)="onGrdAssignmentsToolbarPreparing($event)">
+
+        <dxo-export [enabled]="true" [fileName]="'Assignments'" [allowExportSelectedData]="true">
+            <dxo-texts exportAll="Export all rows" exportSelectedRows="Export selected rows"></dxo-texts>
+        </dxo-export>
+        <dxo-paging [pageSize]="10"></dxo-paging>
+        <dxo-pager [showPageSizeSelector]="true" [showInfo]="true"></dxo-pager>
+        <dxo-filter-row [visible]="true"></dxo-filter-row>
+        <dxo-header-filter [visible]="true"></dxo-header-filter>
+
+        <dxi-column dataField="invoiceTo" caption="Name">
+        </dxi-column>
+        <dxi-column dataField="date" caption="Subject" [hidingPriority]="0">
+        </dxi-column>
+        <dxi-column dataField="Student" caption="Visible to Student" [hidingPriority]="0">
+        </dxi-column>
+        <dxi-column dataField="Guardian" caption="Visible to Guardian" [hidingPriority]="0">
+        </dxi-column>
+        <dxi-column dataField="Teacher" caption="Visible to Teacher" [hidingPriority]="0">
+        </dxi-column>
+        <dxi-column dataField="subject" caption="Validate Till" [hidingPriority]="0">
+        </dxi-column>
+        <dxi-column dataField="date" caption="Files" [hidingPriority]="0">
+        </dxi-column>
+
+    </dx-data-grid>
+
+</div>
+<ng-template #componentContainer></ng-template>

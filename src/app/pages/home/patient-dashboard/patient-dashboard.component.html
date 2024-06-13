@@ -1,0 +1,7 @@
+<h2 class="content-block">Dashboard</h2>
+<div class="content-block">
+  <div class="dx-card responsive-paddings">
+    <dx-scheduler timeZone="America/Los_Angeles" [dataSource]="appointmentsData" [views]='["day", "week", "month"]'
+      currentView="month" [currentDate]="currentDate" [height]="500">
+    </dx-scheduler>
+  </div>

@@ -1,0 +1,41 @@
+<dx-popup class="d-con-popup" [fullScreen]="true" [title]="popupTitle" [dragEnabled]="false" [showCloseButton]="true"
+    [shading]="false" [toolbarItems]="popupToolbarItems" [(visible)]="popupVisible" [animation]="popupAnimation"
+    (onHidden)="onPopupHidden($event)" (onHiding)="onPopupHiding($event)">
+    <dx-scroll-view>
+
+        <dx-form #frmStaffDetails [(formData)]="frmStaffDetail" [colCount]="1">
+            <dxi-item itemType="group" caption="Personal Details" colCount="2">
+                <dxi-item dataField="firstName">
+                    <dxo-label [visible]="true" text="First Name"></dxo-label>
+                    <dxi-validation-rule type="required" message="First Name is required.">
+                    </dxi-validation-rule>
+                </dxi-item>
+                <dxi-item dataField="lastName">
+                    <dxo-label [visible]="true" text="Last Name"></dxo-label>
+                    <dxi-validation-rule type="required" message="Last Name is required.">
+                    </dxi-validation-rule>
+                </dxi-item>
+                <dxi-item dataField="gender" editorType="dxSelectBox"
+                    [editorOptions]="{ dataSource:dtsGenderTypes, valueExpr:'id' , displayExpr:'value'}">
+                    <dxo-label [visible]="true" text="Gender"></dxo-label>
+                    <dxi-validation-rule type="required" message="Gender is required.">
+                    </dxi-validation-rule>
+                </dxi-item>
+
+                <dxi-item dataField="phone">
+                    <dxo-label [visible]="true" text="Contact Number"></dxo-label>
+                </dxi-item>
+                <dxi-item dataField="email">
+                    <dxo-label [visible]="true" text="Email"></dxo-label>
+                </dxi-item>
+                <dxi-item dataField="address">
+                    <dxo-label [visible]="true" text="Address"></dxo-label>
+                </dxi-item>
+                <dxi-item dataField="joinDate" editorType="dxDateBox">
+                    <dxo-label [visible]="true" text="Date of Join"></dxo-label>
+                </dxi-item>
+            </dxi-item>
+        </dx-form>
+    </dx-scroll-view>
+</dx-popup>
+<ng-template #componentContainer></ng-template>

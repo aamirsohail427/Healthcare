@@ -1,0 +1,20 @@
+<dx-popup class="d-con-popup d-con-detail-popup" [(visible)]="popupVisible" [toolbarItems]="popupToolbarItems"
+    [(width)]="popupWidth" [(height)]="popupHeight" [minWidth]="minWidth" [minHeight]="minHeight" [title]="popupTitle"
+    [dragEnabled]="true" [resizeEnabled]="true" (onHiding)="onPopupHiding($event)" (onHidden)="onPopupHidden($event)">
+    <div class="d-con-form">
+        <dx-form #frmExerciseDetails [(formData)]="frmExerciseDetail" [showColonAfterLabel]="false"
+            labelLocation="top" [colCount]="2">
+            <dxi-item dataField="title">
+                <dxo-label [visible]="true" text="Title"></dxo-label>
+                <dxi-validation-rule type="required" message="Title is required.">
+                </dxi-validation-rule>
+            </dxi-item>
+            <dxi-item dataField="ExcerciseDate" editorType="dxDateBox">
+                <dxo-label [visible]="true" text="Date of Excercise"></dxo-label>
+            </dxi-item>
+            <dxi-item dataField="description" editorType="dxTextArea" [colSpan]="2">
+                <dxo-label [visible]="true" text="Description"></dxo-label>
+            </dxi-item>
+        </dx-form>
+    </div>
+    <ng-template #componentContainer></ng-template>
